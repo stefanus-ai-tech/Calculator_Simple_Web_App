@@ -3,13 +3,11 @@ package com.example.calculator;
 
 import java.util.Map;
 
-
 import org.springframework.http.ResponseEntity;
-
-// import net.objecthunter.exp4j.Expression;
-// import net.objecthunter.exp4j.ExpressionBuilder;
-
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -83,17 +81,26 @@ public class CalculatorController {
 
             // Perform the single operation
             switch (operator) {
-                case '+' -> result = leftOperand + rightOperand;
-                case '-' -> result = leftOperand - rightOperand;
-                case '*' -> result = leftOperand * rightOperand;
-                case '/' -> {
+                case '+' : 
+                    result = leftOperand + rightOperand;
+                    break;
+                case '-' : 
+                    result = leftOperand - rightOperand;
+                    break;
+                case '*' : 
+                    result = leftOperand * rightOperand;
+                    break;
+                case '/' : {
                     if (rightOperand == 0) {
                         return ResponseEntity.badRequest().body(Map.of("error", "Division by zero"));
                     }
                     result = leftOperand / rightOperand;
+                    break; // Added break
                 }
-                default -> {
-                    return ResponseEntity.badRequest().body(Map.of("error", "Unknown operator"));
+                default : {
+                    // This case should ideally not be reached if operator validation is robust earlier
+                    // But if it is, it indicates an unexpected operator char slipped through
+                    return ResponseEntity.badRequest().body(Map.of("error", "Invalid or unsupported operator")); 
                 }
             }
 
@@ -116,5 +123,3 @@ public class CalculatorController {
     }
 
 }
-
-
