@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+
 @RestController
 @RequestMapping("/api") // Base path for all endpoint in this controller
 public class CalculatorController {
@@ -75,7 +76,7 @@ public class CalculatorController {
             // Double.parseDouble() correctly converts strings like "12321", "-50", "3.14" into numbers.
             double leftOperand = Double.parseDouble(leftPart);
             double rightOperand = Double.parseDouble(rightPart);
-            // *** ***
+
 
             double result;
 
