@@ -22,14 +22,14 @@ BE
 2.  **Run the application using the Maven wrapper:**
 
     ```bash
-    mvnw.cmd spring-boot:run
+    mvn spring-boot:run
     ```
 
     Alternatively, you can build the project first and then run the JAR file:
 
     ```bash
     # Build the project
-    mvnw.cmd package
+    mvn package
 
     # Run the JAR file (replace * with the actual version)
     java -jar target/calculator-*.jar
